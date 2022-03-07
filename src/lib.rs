@@ -26,6 +26,8 @@ pub trait CommandsSendEvent {
 }
 
 impl CommandsSendEvent for Commands<'_, '_> {
+    /// Queue an event to be dispatched 
+    /// at the next stage boundary.
     fn send_event<E>(&mut self, event: E) 
     where
        E: 'static + Send + Sync
