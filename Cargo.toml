@@ -1,0 +1,14 @@
+[package]
+name = "commands_send_event"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+keywords = ["bevy", "gamedev", "events", "ecs"]
+categories = ["game-development"]
+repository = "https://github.com/ickshonpe/commands_send_event"
+description = "Bevy generic event dispatcher extension trait"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bevy = "0.6"
