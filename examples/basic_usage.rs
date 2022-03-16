@@ -6,18 +6,23 @@
 // ```
 
 use bevy::prelude::*;
-use commands_send_event::CommandsSendEvent;
+use commands_send_event::*;
 
 struct MyEventA(String);
 
 struct MyEventB(i32);
 
-fn writer(mut commands: Commands) {
+fn writer(
+    mut commands: Commands,
+    mut event_writer: AnyEventWriter
+) {
     // send_event adds events to the Commands CommandQueue,
     // to be dispatched at the next stage boundary
     // when the CommandQueue is processed.
     commands.send_event(MyEventA("Hello, world".into()));
     commands.send_event(MyEventB(42));
+
+    event_writer.send(MyEventA("Just any other event.".into()));
 }
 
 fn reader(

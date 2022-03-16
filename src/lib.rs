@@ -1,8 +1,25 @@
 use bevy::ecs::system::Command;
+use bevy::ecs::system::SystemParam;
 use bevy::ecs::system::SystemState;
 use bevy::prelude::*;
 
-pub struct SendEvent<E> 
+#[derive(SystemParam)]
+pub struct AnyEventWriter<'w, 's> {
+    commands: Commands<'w, 's>
+}
+
+impl AnyEventWriter<'_, '_> {
+    /// Queue an event to be dispatched 
+    /// at the next stage boundary.
+    pub fn send<E>(&mut self, event: E) 
+    where
+        E: 'static + Send + Sync
+    {
+        self.commands.send_event(event);
+    }
+}
+
+struct SendEvent<E> 
 where
     E: 'static + Send + Sync
 {
