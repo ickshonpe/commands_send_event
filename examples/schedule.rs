@@ -8,6 +8,8 @@ fn writer(
     mut event: EventWriter<MyEvent>,
     mut commands: Commands) {
     
+    println!("Dispatching events!\n\n");
+    
     // will be available to all systems immediately.
     event.send(MyEvent("Sent with EventWriter".to_string()));
 
