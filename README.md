@@ -2,7 +2,8 @@
 
 An extension trait for Commands that allows you to send Bevy Events generically.
 
-Supports Bevy 0.6
+* version 0.3 supports Bevy 0.7
+* versions <0.3 support Bevy 0.6
 
 ## Limitations
 
@@ -14,7 +15,7 @@ Supports Bevy 0.6
 
 Add to your Cargo.toml ```[dependencies]``` section
 ```
-commands_send_event = "0.2"
+commands_send_event = "0.3"
 ```
 
 then the ```send_event``` method is available on Commands:
