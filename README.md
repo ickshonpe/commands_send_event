@@ -4,8 +4,8 @@ An extension trait for Commands that allows you to send Bevy Events generically.
 
 ## Version 0.4
 
-Removed the silly retrieve EventWriter-with-SystemState implementation.
-Now just gets the Events<T> resource directly.
+Removed the niave retrieve-EventWriter-with-SystemState implementation.
+Now we just access the ```Events<T>``` resource directly.
 
 * version >0.3 supports Bevy 0.7
 * versions <0.3 support Bevy 0.6
@@ -69,6 +69,7 @@ fn sender(
 ```
 
 AnyEventWriter is a facade over Commands that implememnts SystemParam. 
+
 #
 
 ## Notes

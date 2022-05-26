@@ -16,10 +16,6 @@ fn writer(
 
     // won't be available until after next stage boundary
     commands.send_event(MyEvent("Sent went CommandsSentEvent::send_event".to_string()));
-
-    commands.add(|world: &mut World| 
-        world.resource_mut::<Events<_>>().send(MyEvent("Sent with a closure from commands.add".to_string()))
-    );
 }
 
 fn reader(
