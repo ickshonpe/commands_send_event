@@ -2,20 +2,25 @@
 
 An extension trait for Commands that allows you to send Bevy Events generically.
 
-* version 0.3 supports Bevy 0.7
+## Version 0.4
+
+Removed the silly retrieve EventWriter-with-SystemState implementation.
+Now just gets the Events<T> resource directly.
+
+* version >0.3 supports Bevy 0.7
 * versions <0.3 support Bevy 0.6
 
 ## Limitations
 
 * Events won't be dispatched immediately, but at the next Stage boundary when the queued commands are applied to the World.
 
-* Bevy events are very lightweight and efficient. ```send_event``` is much more expensive than the regular EventWriter API.
+#
 
 ## Usage
 
 Add to your Cargo.toml ```[dependencies]``` section
 ```
-commands_send_event = "0.3"
+commands_send_event = "0.4"
 ```
 
 then the ```send_event``` method is available on Commands:
@@ -36,7 +41,11 @@ fn sender(
     commands.send_event(MyEventB(42));
 }
 ```
-The /examples folder has a complete working example.
+The /examples folder has two examples you can run with:
+```
+cargo run --example basic_usage
+cargo run --example schedule
+```
 
 ## 0.2 update
 
@@ -59,4 +68,16 @@ fn sender(
 }
 ```
 
-AnyEventWriter is a facade over Commands that implememnts SystemParam. It's more ergonomic, but has the same drawbacks with a similar or even worse performance profile.
+AnyEventWriter is a facade over Commands that implememnts SystemParam. 
+#
+
+## Notes
+
+As an alternative, you can use ```commands.add``` to queue a closure:
+```rust
+commands.add(|world: &mut World| 
+    world
+    .resource_mut::<Events<_>>()
+    .send(MyEvent)
+);
+```

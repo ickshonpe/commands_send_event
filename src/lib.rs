@@ -1,6 +1,6 @@
+use bevy::ecs::event::Events;
 use bevy::ecs::system::Command;
 use bevy::ecs::system::SystemParam;
-use bevy::ecs::system::SystemState;
 use bevy::prelude::*;
 
 #[derive(SystemParam)]
@@ -31,9 +31,7 @@ where
     E: 'static + Send + Sync
 {
     fn write(self, world: &mut World) {
-        SystemState::<EventWriter<E>>::new(world)
-        .get_mut(world)
-        .send(self.event)
+        world.resource_mut::<Events<E>>().send(self.event)
     }
 }
 
