@@ -31,7 +31,7 @@ where
     E: 'static + Send + Sync
 {
     fn write(self, world: &mut World) {
-        world.resource_mut::<Events<E>>().send(self.event)
+        world.send_event(self.event)
     }
 }
 
