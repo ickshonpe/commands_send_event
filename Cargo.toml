@@ -1,7 +1,7 @@
 [package]
 name = "commands_send_event"
 edition = "2021"
-version = "0.5.0"
+version = "0.6.0"
 license = "MIT OR Apache-2.0"
 keywords = ["bevy", "gamedev", "events", "ecs"]
 categories = ["game-development"]
@@ -9,5 +9,7 @@ repository = "https://github.com/ickshonpe/commands_send_event"
 description = "Bevy generic event dispatcher extension trait"
 readme = "README.md"
 
-[dependencies]
-bevy = { version = "0.8", default_features = false }
+[dependencies.bevy]
+version = "0.9"
+default_features = false
+
